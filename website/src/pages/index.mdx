@@ -123,10 +123,8 @@ Immutability should be a key principle. Wherever possible, data should remain im
 ```ts
 // ❌ Avoid data mutations
 const removeFirstUser = (users: Array<User>) => {
-  if (users.length === 0) {
-    return users;
-  }
-  return users.splice(1);
+  users.splice(0, 1);
+  return users;
 };
 
 // ✅ Use readonly type to prevent accidental mutations
@@ -135,7 +133,7 @@ const removeFirstUser = (users: ReadonlyArray<User>) => {
     return users;
   }
   return users.slice(1);
-  // Using arr.splice(1) errors - Function 'splice' does not exist on 'users'
+  // Using arr.splice(0, 1) errors - Function 'splice' does not exist on 'users'
 };
 ```
 
